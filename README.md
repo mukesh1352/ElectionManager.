@@ -35,38 +35,27 @@ Millions of eligible voters — especially first-time voters, out-of-state stude
 
 ---
 
-## ✨ Key Features
+## ✨ Google Services (Gemini) - Deep Integration
 
-### 🧠 NLP & Intelligence (Google Gemini)
-- **Intent Detection**: Understands vague queries like "Can I vote?" or "What do I need?"
-- **Entity Extraction**: Automatically detects age, location, and voter status from natural conversation
-- **Context Memory**: Never asks the same question twice — maintains state across the conversation
-- **Structured JSON Outputs**: Gemini returns structured data (not just text) that directly drives the UI
+VoteMate is not just a chat app; it is a **Gemini-driven state machine**. We have deeply integrated Google Gemini 1.5 Flash to handle:
 
-### 🎯 Guided Flow (Not Just Chat)
-- **5-Step Progress Tracker**: Eligibility → Registration → Deadlines → Documents → Voting
-- **Smart Decision Logic**:
-  - Age < 18 → Explains pre-registration rules
-  - Not registered → Guides through registration first
-  - Registered → Shows deadlines, ID requirements, polling locations
-- **Dynamic Quick Replies**: AI-generated contextual buttons after every response
-- **Timeline Widget**: Automatically populated with relevant deadlines
+-   **Intelligent NLP Intent Detection**: Every message is analyzed by Gemini to detect the user's intent (Eligibility Check, Registration Help, Deadline Lookup, etc.) to drive the UI journey.
+-   **Automated Entity Extraction**: Gemini acts as a live data parser, identifying and extracting `age`, `location`, and `voterStatus` from natural conversation to build the **Voter Profile**.
+-   **Contextual Reasoning**: Gemini explains the *why* behind complex election laws (e.g., student voting, out-of-state ballots, ID requirements) in plain, personalized language.
+-   **Structured State Control**: The assistant doesn't just return text; it returns **Structured JSON** that directly controls the 5-step progress tracker and populates the dynamic timeline widget.
+-   **Service-Layer Integration**: AI logic is fully decoupled into a dedicated `aiService`, ensuring clean architecture and modularity.
 
-### 🎮 Real-World Simulation Mode
-- **"Run Demo Journey" button**: Auto-plays a complete voter journey
-- Shows a confused 18-year-old out-of-state college student navigating absentee voting
-- Perfect for hackathon demos — **zero typing required**
+---
 
-### 🌍 Inclusivity & Accessibility
-- **Voice Input**: Web Speech API for spoken queries
-- **Voice Output**: "Listen" button reads AI responses aloud (with markdown stripped)
-- **Multi-language**: English, Spanish, French support
-- **Full ARIA**: `aria-label`, `aria-live`, `role="log"` on all interactive elements
-- **Keyboard navigable**: All buttons have `tabIndex` support
+## ⚡ Efficiency & Architecture
 
-### 🎉 Delight
-- **Confetti celebration** when the user completes the voting journey (Step 5)
-- Smooth CSS animations and micro-interactions
+-   **High-Speed Caching**: Implemented a service-level cache in `utils/cache.ts` to provide instant responses for repeated queries and reduce API latency.
+-   **Hybrid Reasoning Engine**: Uses a **VoterRuleService** for immediate, rule-based feedback on simple criteria (like age checks), falling back to Gemini for complex conversational reasoning.
+-   **Modular Folder Structure**: Completely refactored into a clean, professional architecture:
+    - `/services`: Centralized AI and Business logic
+    - `/utils`: Shared helper functions and caching
+    - `/components`: Decoupled, reusable UI components
+    - `/app/api`: Clean, thin route handlers
 
 ---
 
