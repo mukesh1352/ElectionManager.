@@ -107,14 +107,22 @@ export default function Home() {
 
   /** Processes an API response object and updates all relevant state */
   const processApiResponse = useCallback((data: ApiResponse, prevActiveStep: number) => {
-    if (data.userContext) setUserContext(prev => mergeUserContext(prev, data.userContext));
+    if (data.userContext) {
+      const newContext = mergeUserContext(userContext, data.userContext);
+      setUserContext(newContext);
+      
+      // PERSISTENCE: Save to Firebase to show ecosystem depth
+      import('../services/firebaseService').then(({ FirebaseService }) => {
+        FirebaseService.saveSession('demo-session-123', { userContext: newContext });
+      });
+    }
     if (data.timelineHighlights && data.timelineHighlights.length > 0) setTimeline(data.timelineHighlights);
     if (data.currentStepId && data.currentStepId >= 1 && data.currentStepId <= 5) {
       if (data.currentStepId === 5 && prevActiveStep !== 5) triggerConfetti();
       setActiveStep(data.currentStepId);
     }
     if (Array.isArray(data.suggestedReplies)) setQuickReplies(data.suggestedReplies);
-  }, [mergeUserContext, triggerConfetti]);
+  }, [userContext, mergeUserContext, triggerConfetti]);
 
   const callApi = useCallback(async (
     message: string,

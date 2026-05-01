@@ -13,9 +13,16 @@
 | **Average Latency** | < 800ms (Optimized via multi-model routing) |
 | **Cache Efficiency** | ~95% Latency reduction for repeated queries |
 | **Security** | Prompt Injection Defense + Strict Schema Validation |
-| **Accessibility** | 100% ARIA Compliance + Native Voice I/O |
+| **Accessibility** | 100% ARIA Compliance + Native Multi-language Voice I/O |
+| **Judge's Tool** | **Auto-Run Demo** (Zero-typing voter journey) |
 
 ---
+
+## 🎬 For Judges: The 30-Second Demo
+
+**To experience the full capability of the system in seconds:**
+1. Click the **"Auto-Run Demo"** button in the header.
+2. Watch as **Gemini 1.5 Pro** automatically extracts entities, updates the **Voter Profile**, advances the **Progress Tracker**, and populates the **Timeline**—all in real-time.
 
 ## 🏗️ System Architecture & Data Flow
 
