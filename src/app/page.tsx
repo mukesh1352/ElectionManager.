@@ -205,8 +205,10 @@ export default function Home() {
   return (
     <main className={styles.container}>
       <header className={styles.header}>
-        <h1 className={styles.title}>VoteMate</h1>
-        <p className={styles.subtitle}>Your intelligent, AI-powered voting companion</p>
+        <div className={styles.headerInfo}>
+          <h1 className={styles.title}>VoteMate</h1>
+          <p className={styles.subtitle}>Your intelligent, AI-powered voting companion</p>
+        </div>
         <div className={styles.headerControls}>
           <select
             className={styles.languageSelect}
@@ -230,6 +232,7 @@ export default function Home() {
           </button>
         </div>
       </header>
+
 
       <ProgressTracker activeStep={activeStep} steps={ELECTION_STEPS} />
 

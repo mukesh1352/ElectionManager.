@@ -44,11 +44,11 @@ describe('VoterProfile', () => {
 
 describe('ProgressTracker', () => {
   it('shows checkmark for completed steps', () => {
-    render(<ProgressTracker activeStep={3} steps={ELECTION_STEPS} />);
+    const { container } = render(<ProgressTracker activeStep={3} steps={ELECTION_STEPS} />);
 
-    // Steps 1 and 2 should show ✓
-    const checkmarks = screen.getAllByText('✓');
-    expect(checkmarks.length).toBe(2);
+    // Steps 1 and 2 should show the checkmark SVG (polyline)
+    const polylines = container.querySelectorAll('polyline');
+    expect(polylines.length).toBe(2);
   });
 
   it('shows step number for current and future steps', () => {
@@ -91,9 +91,9 @@ describe('Timeline', () => {
     expect(screen.getByText('Election Day')).toBeDefined();
   });
 
-  it('renders nothing when events array is empty', () => {
-    const { container } = render(<Timeline events={[]} />);
-    expect(container.innerHTML).toBe('');
+  it('renders placeholder when events array is empty', () => {
+    render(<Timeline events={[]} />);
+    expect(screen.getByText(/Share your location/i)).toBeDefined();
   });
 });
 

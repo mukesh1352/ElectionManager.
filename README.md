@@ -8,6 +8,12 @@
 
 ---
 
+## 🏗️ Chosen Vertical
+**Civic Engagement & Voter Assistance**
+VoteMate is designed to bridge the information gap in the democratic process, specifically targeting first-time and underrepresented voters through an intelligent, personalized guidance system.
+
+---
+
 ## 🎯 Problem Statement
 
 Millions of eligible voters — especially first-time voters, out-of-state students, and marginalized communities — find the election process **confusing, fragmented, and intimidating**. Information about registration deadlines, required documents, and absentee voting is scattered across dozens of government websites with dense legal language.
@@ -105,8 +111,8 @@ Millions of eligible voters — especially first-time voters, out-of-state stude
 │         └───────────────┴────────────────┘           │
 │                         │                            │
 └─────────────────────────┬────────────────────────────┘
-                          │
-┌─────────────────────────┴────────────────────────────┐
+                        │
+┌───────────────────────┴─────────────────────────────┐
 │               Google Gemini API                       │
 │                                                       │
 │  System Prompt → NLP + Entity Extraction →            │
@@ -119,7 +125,6 @@ Millions of eligible voters — especially first-time voters, out-of-state stude
 ---
 
 ## 🚀 How It Works — User Journey
-
 1. **User opens VoteMate** → Greeted with a friendly welcome message
 2. **Shares basic info** → "I'm 18, from Texas" → AI extracts entities → Voter Profile populates
 3. **Eligibility check** → Progress tracker advances → AI confirms eligibility
@@ -177,10 +182,10 @@ See [SECURITY.md](SECURITY.md) for full details.
 bun run test
 ```
 
-**11 test cases** covering:
+**12 test cases** covering:
 - VoterProfile rendering with different entity states
-- ProgressTracker step completion logic
-- Timeline rendering and empty-state handling
+- ProgressTracker step completion logic (including SVG icons)
+- Timeline rendering and placeholder states
 - API input validation (empty, wrong type, too long, valid)
 
 ---
@@ -252,7 +257,7 @@ src/
 │   └── index.ts              # Shared TypeScript types & constants
 └── __tests__/
     ├── setup.ts              # Vitest configuration
-    └── decisionLogic.test.tsx # 11 unit tests
+    └── decisionLogic.test.tsx # 12 unit tests
 ```
 
 ---
@@ -264,3 +269,11 @@ src/
 - **Polling place finder** with map integration
 - **Offline mode** with cached election data
 - **Additional languages** (Hindi, Mandarin, Arabic)
+
+---
+
+## 📝 Assumptions
+1. **API Availability**: Assumes the Google Gemini API is accessible and has sufficient quota.
+2. **Web Speech API Support**: Assumes the user is using a modern browser (like Chrome or Edge) that supports the Web Speech API for voice features.
+3. **Registration Data**: The AI provides general guidance based on its training data; in a production environment, this would be connected to a live government API for real-time verification.
+4. **Internet Connectivity**: Assumes a stable connection for AI processing and voice recognition services.

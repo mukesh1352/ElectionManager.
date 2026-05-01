@@ -7,20 +7,30 @@ interface TimelineProps {
 }
 
 export const Timeline: React.FC<TimelineProps> = ({ events }) => {
-  if (!events || events.length === 0) return null;
-
   return (
-    <div className={styles.timelineCard} aria-label="Important Deadlines Timeline">
+    <div className={styles.timelineCard}>
       <h3 className={styles.profileTitle}>
-        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-        Key Deadlines
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        Deadlines
       </h3>
-      {events.map((item, idx) => (
-        <div key={idx} className={styles.timelineItem} role="listitem">
-          <div className={styles.timelineDate}>{item.date}</div>
-          <div className={styles.timelineEvent}>{item.event}</div>
+      
+      {events.length === 0 ? (
+        <div className={styles.profileValue} style={{ opacity: 0.5, fontStyle: 'italic', fontWeight: 400, marginTop: '20px', textAlign: 'center' }}>
+          Share your location to see registration deadlines.
         </div>
-      ))}
+      ) : (
+        <div style={{ marginTop: '10px' }}>
+          {events.map((ev, i) => (
+            <div key={i} className={styles.timelineItem}>
+              <div className={styles.timelineDate}>{ev.date}</div>
+              <div className={styles.timelineEvent}>{ev.event}</div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
