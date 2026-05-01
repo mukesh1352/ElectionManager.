@@ -288,7 +288,8 @@
   align-items: flex-end;
 }
 
-.messageRow.bot {
+.messageRow.bot,
+.messageRow.model {
   align-items: flex-start;
 }
 
@@ -308,7 +309,8 @@
   border-bottom-right-radius: 4px;
 }
 
-.messageBubble.bot {
+.messageBubble.bot,
+.messageBubble.model {
   background-color: var(--bot-msg-bg);
   color: #e2e8f0;
   border-bottom-left-radius: 4px;
