@@ -106,6 +106,6 @@ export class AIService {
       model: 'gemini-1.5-flash',
       contents: [{ role: 'user', parts: [{ text: prompt }] }],
     });
-    return result.text;
+    return result.text || "Unable to generate plan.";
   }
 }
