@@ -224,7 +224,7 @@ export default function Home() {
       <header className={styles.header}>
         <div className={styles.headerInfo}>
           <h1 className={styles.title}>VoteMate</h1>
-          <p className={styles.subtitle}>Your intelligent, AI-powered voting companion</p>
+          <p className={styles.subtitle}>Powered by Google Gemini 1.5 Pro</p>
         </div>
         <div className={styles.headerControls}>
           <select
@@ -232,7 +232,6 @@ export default function Home() {
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
             disabled={isDemoRunning || isLoading}
-            aria-label="Select language"
           >
             <option value="English">English</option>
             <option value="Spanish">Español</option>
@@ -242,10 +241,8 @@ export default function Home() {
             className={styles.demoButton}
             onClick={runDemoJourney}
             disabled={isDemoRunning || isLoading}
-            aria-label="Run demo voter journey"
           >
-            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            {isDemoRunning ? 'Running...' : 'Run Demo Journey'}
+             {isDemoRunning ? 'Journey Running...' : 'Auto-Run Demo'}
           </button>
         </div>
       </header>
