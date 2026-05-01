@@ -128,13 +128,30 @@ export default function Home() {
         body: JSON.stringify({ message, history, language, currentUserContext: ctx }),
       });
       const text = await res.text();
-      const data: ApiResponse = JSON.parse(text);
-      if (!res.ok) return null;
+      let data: any;
+      try {
+        data = JSON.parse(text);
+      } catch (e) {
+        data = { error: text };
+      }
+      
+      if (!res.ok) {
+        // Return a partial object with the error as the response so UI can show it
+        return { 
+          response: data.error || 'API Error',
+          currentStepId: activeStep,
+          suggestedReplies: []
+        };
+      }
       return data;
-    } catch {
-      return null;
+    } catch (error: any) {
+      return { 
+        response: error.message || 'Connection Failed',
+        currentStepId: activeStep,
+        suggestedReplies: []
+      };
     }
-  }, [language]);
+  }, [language, activeStep]);
 
   const handleSend = useCallback(async (text: string) => {
     if (!text.trim() || isLoading || isDemoRunning) return;
@@ -149,7 +166,7 @@ export default function Home() {
       setMessages(prev => [...prev, { role: 'model', content: data.response }]);
       processApiResponse(data, activeStep);
     } else {
-      setMessages(prev => [...prev, { role: 'model', content: "Sorry, I couldn't get a response. Please try again." }]);
+      setMessages(prev => [...prev, { role: 'model', content: "Sorry, I couldn't get a response. Please check your internet and API key settings." }]);
     }
     setIsLoading(false);
   }, [isLoading, isDemoRunning, messages, userContext, activeStep, callApi, processApiResponse]);
