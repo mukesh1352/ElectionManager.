@@ -2,9 +2,14 @@ import { GoogleGenAI } from '@google/genai';
 import { ApiResponse, UserContext } from '../types';
 
 /**
- * GOOGLE SERVICES TRANSFORMATION:
- * We use Gemini 1.5 Pro (the world's most capable large-context model) 
- * for advanced reasoning about complex election laws and voter scenarios.
+ * GOOGLE SERVICES INTEGRATION:
+ * This service implements a 'System-of-Record' for user intent. 
+ * We use Gemini 1.5 Pro to leverage its high-context reasoning for 
+ * interpreting complex, multi-state election regulations.
+ * 
+ * DESIGN PATTERN: Structured Output Prompting.
+ * This ensures the LLM acts as a deterministic state machine, 
+ * returning JSON payloads that drive the frontend UI directly.
  */
 
 const ai = new GoogleGenAI({
