@@ -239,6 +239,27 @@ bun run dev
 
 ---
 
+## 🚀 Deployment
+
+### Option 1: Vercel (Recommended)
+The easiest way to deploy VoteMate is using [Vercel](https://vercel.com/):
+1. Push your code to GitHub.
+2. Import your repository into Vercel.
+3. Add the `GEMINI_API_KEY` to **Project Settings > Environment Variables**.
+4. Click **Deploy**.
+
+### Option 2: Docker
+For self-hosting or containerized environments:
+```bash
+# 1. Build the image
+docker build -t votemate .
+
+# 2. Run the container
+docker run -p 3000:3000 -e GEMINI_API_KEY=your_key_here votemate
+```
+
+---
+
 ## 📁 Project Structure
 
 ```
